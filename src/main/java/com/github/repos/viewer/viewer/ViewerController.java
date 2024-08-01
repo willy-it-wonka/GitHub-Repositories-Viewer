@@ -1,9 +1,11 @@
 package com.github.repos.viewer.viewer;
 
+import com.github.repos.viewer.viewer.payload.ViewerResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Flux;
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -16,8 +18,8 @@ public class ViewerController {
     }
 
     @GetMapping("/{username}/repos")
-    public void getUserRepositories(@PathVariable String username) {
-        //TODO: call method from ViewerService. Return ViewerResponse.
+    public Flux<ViewerResponse> getUserRepositories(@PathVariable String username) {
+        return viewerService.getUserRepositories(username);
     }
 
 }
