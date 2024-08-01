@@ -1,9 +1,25 @@
 ## Description
 This application provides a REST API that allows users to retrieve data about non-fork GitHub repositories associated with a specified username, along with detailed information about each repository's branches.
+</br></br>
 
 ## Technologies
+![Static Badge](https://img.shields.io/badge/Java-21-blue?style=for-the-badge&labelColor=black) ![Static Badge](https://img.shields.io/badge/Spring_Boot-3.3.2-blue?style=for-the-badge&labelColor=black) </br>
+![Static Badge](https://img.shields.io/badge/GitHub_API-3-blue?style=for-the-badge&labelColor=black) </br>
+![Static Badge](https://img.shields.io/badge/rest_api-black?style=for-the-badge) ![Static Badge](https://img.shields.io/badge/json-black?style=for-the-badge) </br>
+![Static Badge](https://img.shields.io/badge/chat_gtp-4-blue?style=for-the-badge&labelColor=black)
+</br></br>
 
 ## How to use
+1. Clone the repository. [Instruction](https://www.jetbrains.com/help/idea/set-up-a-git-repository.html#clone-repo).
+2. Go to GitHubRepositoriesViewerApplication class and run it.
+3. Now you can send http requests using [Postman](https://www.postman.com) or use a browser.
+   ```
+   http://localhost:8080/api/v1/users/willy-it-wonka/repos
+   ```
+   ```
+   http://localhost:8080/api/v1/users/non-existing-user/repos
+   ```
+</br>
 
 ## Task and initial assumptions
 ```
