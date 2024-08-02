@@ -14,14 +14,13 @@ import java.util.Optional;
 @Slf4j
 public class ViewerService {
 
-    private static final String GITHUB_API_URL = "https://api.github.com";
     private static final String GET_BRANCHES_URL_ERROR = "Branches URL is null for repository: ";
 
     private final WebClient webClient;
     private final ViewerMapper viewerMapper;
 
-    public ViewerService(WebClient.Builder webClientBuilder, ViewerMapper viewerMapper) {
-        this.webClient = webClientBuilder.baseUrl(GITHUB_API_URL).build();
+    public ViewerService(WebClient webClient, ViewerMapper viewerMapper) {
+        this.webClient = webClient;
         this.viewerMapper = viewerMapper;
     }
 
