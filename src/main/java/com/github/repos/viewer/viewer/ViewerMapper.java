@@ -4,36 +4,26 @@ import com.github.repos.viewer.viewer.payload.GitHubApiResponse;
 import com.github.repos.viewer.viewer.payload.ViewerResponse;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.List;
 
 @Component
 public class ViewerMapper {
 
     ViewerResponse mapToViewerResponse(GitHubApiResponse response) {
-        ViewerResponse viewerResponse = new ViewerResponse();
-
-        // Set the name of the repository.
-        viewerResponse.setName(response.getName());
-
         // Set the name of the repository owner.
-        ViewerResponse.Owner owner = new ViewerResponse.Owner();
-        owner.setLogin(response.getOwner().getLogin());
-        viewerResponse.setOwner(owner);
+        ViewerResponse.Owner owner = new ViewerResponse.Owner(response.getOwner().getLogin());
 
         // Set the data for the branches.
+        List<ViewerResponse.Branch> branches = Collections.emptyList();
         if (response.getBranches() != null) { // To avoid NullPointerException.
-            List<ViewerResponse.Branch> branches = response.getBranches().stream()
-                    .map(gitHubBranch -> {
-                        ViewerResponse.Branch branch = new ViewerResponse.Branch();
-                        branch.setName(gitHubBranch.getName());
-                        branch.setLastCommitSha(gitHubBranch.getCommit().getSha());
-                        return branch;
-                    })
+            branches = response.getBranches().stream()
+                    .map(branch -> new ViewerResponse.Branch(branch.getName(), branch.getCommit().getSha()))
                     .toList();
-            viewerResponse.setBranches(branches);
         }
 
-        return viewerResponse;
+        // Set the name of the repository and return ViewerResponse.
+        return new ViewerResponse(response.getName(), owner, branches);
     }
 
 }
