@@ -1,10 +1,10 @@
 ## Description
-This application provides a REST API that allows users to retrieve data about non-fork GitHub repositories associated with a specified username, along with detailed information about each repository's branches.
+This application provides a REST API that allows users to retrieve data about non-fork repositories from the GitHub API, associated with a specific username, along with detailed information about the branches of each repository.
 </br></br>
 
 ## Technologies
-![Static Badge](https://img.shields.io/badge/Java-21-blue?style=for-the-badge&labelColor=black) ![Static Badge](https://img.shields.io/badge/Spring_Boot-3.3.2-blue?style=for-the-badge&labelColor=black) </br>
-![Static Badge](https://img.shields.io/badge/GitHub_API-3-blue?style=for-the-badge&labelColor=black) </br>
+![Static Badge](https://img.shields.io/badge/Java-21-blue?style=for-the-badge&labelColor=black) ![Static Badge](https://img.shields.io/badge/Spring_Boot-3.3.2-blue?style=for-the-badge&labelColor=black) ![Static Badge](https://img.shields.io/badge/maven-3.9.6-blue?style=for-the-badge&labelColor=black) </br>
+![Static Badge](https://img.shields.io/badge/GitHub_API-3-blue?style=for-the-badge&labelColor=black) ![Static Badge](https://img.shields.io/badge/webclient-black?style=for-the-badge) </br>
 ![Static Badge](https://img.shields.io/badge/rest_api-black?style=for-the-badge) ![Static Badge](https://img.shields.io/badge/json-black?style=for-the-badge) </br>
 ![Static Badge](https://img.shields.io/badge/chat_gtp-4-blue?style=for-the-badge&labelColor=black)
 </br></br>
