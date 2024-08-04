@@ -29,32 +29,39 @@ public class ViewerService {
                 // Configure WebClient to send a GET request to the specified URI.
                 .get()
                 .uri("/users/{username}/repos", username)
-                // Retrieve the response and covert it to GitHubApiResponse.
+                // Retrieve the response and convert it to a Flux of GitHubApiResponse objects.
                 .retrieve()
                 .bodyToFlux(GitHubApiResponse.class)
                 // Log if branches_url is null. Then we won't be able to retrieve the branches.
                 .doOnNext(repo -> {
-                    if (repo.getBranchesUrl() == null) {
-                        log.warn(GET_BRANCHES_URL_ERROR + repo.getName());
+                    if (repo.branchesUrl() == null) {
+                        log.warn(GET_BRANCHES_URL_ERROR + repo.name());
                     }
                 })
-                .filter(repo -> !repo.isFork())
+                .filter(repo -> !repo.fork())
                 .flatMap(this::getRepositoryBranches)
                 .map(viewerMapper::mapToViewerResponse);
     }
 
     private Mono<GitHubApiResponse> getRepositoryBranches(GitHubApiResponse repository) {
-        return Optional.ofNullable(repository.getBranchesUrl())
+        return Optional.ofNullable(repository.branchesUrl())
                 .map(url -> url.replace("{/branch}", ""))
                 .map(url -> this.webClient
                         .get()
                         .uri(url)
                         .retrieve()
+                        // Convert the response body to a Flux of GitHubBranch objects.
                         .bodyToFlux(GitHubApiResponse.GitHubBranch.class)
+                        // Collect the Flux of GitHubBranch objects into a List and wrap it in Mono.
                         .collectList()
-                        .doOnNext(repository::setBranches)
-                        // Return the instance of GitHubApiResponse with updated branches data.
-                        .thenReturn(repository))
+                        // Create new GitHubApiResponse object with the collected branches and wrap it in Mono.
+                        .map(branches -> new GitHubApiResponse(
+                                repository.name(),
+                                repository.owner(),
+                                branches,
+                                repository.fork(),
+                                repository.branchesUrl()
+                        )))
                 .orElse(Mono.just(repository));
     }
 

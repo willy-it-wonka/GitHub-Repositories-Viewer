@@ -12,18 +12,18 @@ public class ViewerMapper {
 
     ViewerResponse mapToViewerResponse(GitHubApiResponse response) {
         // Set the name of the repository owner.
-        ViewerResponse.Owner owner = new ViewerResponse.Owner(response.getOwner().getLogin());
+        ViewerResponse.Owner owner = new ViewerResponse.Owner(response.owner().login());
 
         // Set the data for the branches.
         List<ViewerResponse.Branch> branches = Collections.emptyList();
-        if (response.getBranches() != null) { // To avoid NullPointerException.
-            branches = response.getBranches().stream()
-                    .map(branch -> new ViewerResponse.Branch(branch.getName(), branch.getCommit().getSha()))
+        if (response.branches() != null) { // To avoid NullPointerException.
+            branches = response.branches().stream()
+                    .map(branch -> new ViewerResponse.Branch(branch.name(), branch.commit().sha()))
                     .toList();
         }
 
         // Set the name of the repository and return ViewerResponse.
-        return new ViewerResponse(response.getName(), owner, branches);
+        return new ViewerResponse(response.name(), owner, branches);
     }
 
 }
