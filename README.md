@@ -1,5 +1,5 @@
 ## Description
-This application provides a REST API that allows users to retrieve data about non-fork repositories from the GitHub API, associated with a specific username, along with detailed information about the branches of each repository.
+This application provides REST API to retrieve data about non-fork repositories from the GitHub API, associated with the specified username, along with detailed information about the branches of each repository.
 </br></br>
 
 ## Technologies
@@ -24,24 +24,27 @@ This application provides a REST API that allows users to retrieve data about no
 ## Task and initial assumptions
 ```
 Acceptance criteria:
-As an api consumer, given username and header “Accept: application/json”, I would like to list all
-his github repositories, which are not forks. Information, which I require in the response, is:
+As an api consumer, given username and header “Accept: application/json”,
+I would like to list all his github repositories, which are not forks.
+Information, which I require in the response, is:
 - Repository Name
 - Owner Login
 - For each branch it’s name and last commit sha
 
-As an api consumer, given not existing github user, I would like to receive 404 response in such a format:
+As an api consumer, given not existing github user, I would like to receive 404 response
+in such a format:
 {
     “status”: ${responseCode}
     “message”: ${whyHasItHappened}
 }
 
 Notes:
-Please full-fill the given acceptance criteria, delivering us your best code compliant with industry standards.
-Please use https://developer.github.com/v3 as a backing API
-Application should have a proper README.md file
+- Please full-fill the given acceptance criteria, delivering us your best code compliant
+with industry standards.
+- Please use https://developer.github.com/v3 as a backing API.
+- Application should have a proper README.md file.
 ```
-  We will need:
+We will need:
   1. **Controller**: serves as the entry point for our API, handling client requests.
   2. **Service**: for business logic, manages communication with GitHub API.
   3. **DTOs**: for separation between layers of the application - 1 to handle responses from GitHub API, 2 as a response to the client of our application.
