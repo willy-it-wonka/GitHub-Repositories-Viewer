@@ -14,11 +14,10 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(WebClientResponseException.class)
     @ResponseBody
-    public Map<String, Object> handleWebClientResponseException(WebClientResponseException e) {
-        String customizedMessage = e.getMessage() + USER_NOT_FOUND_ERROR;
+    public Map<String, String> handleWebClientResponseException(WebClientResponseException e) {
         return Map.of(
-                "message", customizedMessage,
-                "status", e.getStatusCode().value()
+                "message", e.getMessage() + USER_NOT_FOUND_ERROR,
+                "status", String.valueOf(e.getStatusCode().value())
         );
     }
 
