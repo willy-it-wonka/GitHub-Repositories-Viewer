@@ -26,13 +26,10 @@ public class ViewerService {
 
     public Flux<ViewerResponse> getUserRepositories(String username) {
         return this.webClient
-                // Configure WebClient to send a GET request to the specified URI.
                 .get()
                 .uri("/users/{username}/repos", username)
-                // Retrieve the response and convert it to a Flux of GitHubApiResponse objects.
                 .retrieve()
                 .bodyToFlux(GitHubApiResponse.class)
-                // Log if branches_url is null. Then we won't be able to retrieve the branches.
                 .doOnNext(repo -> {
                     if (repo.branchesUrl() == null) {
                         log.warn(GET_BRANCHES_URL_ERROR + repo.name());
@@ -50,11 +47,8 @@ public class ViewerService {
                         .get()
                         .uri(url)
                         .retrieve()
-                        // Convert the response body to a Flux of GitHubBranch objects.
                         .bodyToFlux(GitHubApiResponse.GitHubBranch.class)
-                        // Collect the Flux of GitHubBranch objects into a List and wrap it in Mono.
                         .collectList()
-                        // Create new GitHubApiResponse object with the collected branches and wrap it in Mono.
                         .map(branches -> new GitHubApiResponse(
                                 repository.name(),
                                 repository.owner(),
