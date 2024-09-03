@@ -51,3 +51,15 @@ We will need:
   4. **Mapper**: converts data retrieved from the GitHub API into the format returns by our application.
   5. **Exception class**.
   6. **Exception handling mechanism**: to format the error responses as required.
+</br></br>
+
+## Useful links to analyze GitHub API responses
+```
+https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#list-repositories-for-a-user
+```
+```
+https://api.github.com/users/willy-it-wonka/repos
+```
+```
+https://api.github.com/repos/willy-it-wonka/Bookshelf-backend/branches
+```
