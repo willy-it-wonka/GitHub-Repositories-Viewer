@@ -9,17 +9,5 @@ public record GitHubApiResponse(
         Owner owner,
         List<GitHubBranch> branches,
         boolean fork,
-        @JsonProperty("branches_url") String branchesUrl
-) {
-
-    public record Owner(String login) {
-    }
-
-    public record GitHubBranch(String name, Commit commit) {
-
-        public record Commit(String sha) {
-        }
-
-    }
-
+        @JsonProperty("branches_url") String branchesUrl) {
 }

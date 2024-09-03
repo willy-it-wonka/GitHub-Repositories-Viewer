@@ -1,6 +1,7 @@
 package com.github.repos.viewer.viewer;
 
 import com.github.repos.viewer.viewer.payload.GitHubApiResponse;
+import com.github.repos.viewer.viewer.payload.GitHubBranch;
 import com.github.repos.viewer.viewer.payload.ViewerResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -47,7 +48,7 @@ public class ViewerService {
                         .get()
                         .uri(url)
                         .retrieve()
-                        .bodyToFlux(GitHubApiResponse.GitHubBranch.class)
+                        .bodyToFlux(GitHubBranch.class)
                         .collectList()
                         .map(branches -> new GitHubApiResponse(
                                 repository.name(),

@@ -1,6 +1,8 @@
 package com.github.repos.viewer.viewer;
 
+import com.github.repos.viewer.viewer.payload.Branch;
 import com.github.repos.viewer.viewer.payload.GitHubApiResponse;
+import com.github.repos.viewer.viewer.payload.Owner;
 import com.github.repos.viewer.viewer.payload.ViewerResponse;
 import org.springframework.stereotype.Component;
 
@@ -11,12 +13,12 @@ import java.util.List;
 public class ViewerMapper {
 
     ViewerResponse mapToViewerResponse(GitHubApiResponse response) {
-        ViewerResponse.Owner owner = new ViewerResponse.Owner(response.owner().login());
+        Owner owner = new Owner(response.owner().login());
 
-        List<ViewerResponse.Branch> branches = Collections.emptyList();
+        List<Branch> branches = Collections.emptyList();
         if (response.branches() != null) {
             branches = response.branches().stream()
-                    .map(branch -> new ViewerResponse.Branch(branch.name(), branch.commit().sha()))
+                    .map(branch -> new Branch(branch.name(), branch.commit().sha()))
                     .toList();
         }
 
