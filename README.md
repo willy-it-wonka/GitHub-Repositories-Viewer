@@ -1,5 +1,6 @@
 ## Description
 This application provides REST API to retrieve data about non-fork repositories from the GitHub API, associated with the specified username, along with detailed information about the branches of each repository.
+- Integration testing (End-to-End)
 </br></br>
 
 ## Technologies
@@ -49,8 +50,7 @@ We will need:
   2. **Service**: for business logic, manages communication with GitHub API.
   3. **DTOs**: for separation between layers of the application - 1 to handle responses from GitHub API, 2 as a response to the client of our application.
   4. **Mapper**: converts data retrieved from the GitHub API into the format returns by our application.
-  5. **Exception class**.
-  6. **Exception handling mechanism**: to format the error responses as required.
+  5. **Exception handling mechanism**: to format the error responses as required.
 </br></br>
 
 ## Useful links to analyze GitHub API responses
